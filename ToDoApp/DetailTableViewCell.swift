@@ -9,9 +9,10 @@ import UIKit
 
 class DetailTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var detailImage: UIImageView!
+//    @IBOutlet weak var detailImage: UIImageView!
     
     @IBOutlet weak var detailNote: UILabel!
     
+    @IBOutlet weak var detailImage: UIImageView!
 }
 

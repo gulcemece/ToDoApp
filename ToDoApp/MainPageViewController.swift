@@ -12,7 +12,8 @@ class MainPageTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
+    fileprivate var selectedRow: Int?
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ToDo.sampleData.count
@@ -29,10 +30,16 @@ class MainPageTableViewController: UITableViewController {
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        var selectedItem = ToDo.sampleData[indexPath.row]
-//        ToDo.sampleData[indexPath.row] = selectedItem
-//        performSegue(withIdentifier: "detailSegue", sender: nil)
-//    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedRow = indexPath.row
+        performSegue(withIdentifier: "detailsegue", sender: self)
+//        let dVC = DetailPageViewController()
+//        navigationController?.pushViewController(dVC, animated: true)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dVC = segue.destination as? DetailPageViewController {
+            dVC.rowSelected = selectedRow
+        }
+    }
 }
 

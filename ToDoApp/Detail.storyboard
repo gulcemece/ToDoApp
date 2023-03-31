@@ -21,7 +21,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Gg2-tR-ZPU" customClass="DetailTableViewCell" customModule="ToDoApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="detailcell" id="Gg2-tR-ZPU" customClass="DetailTableViewCell" customModule="ToDoApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gg2-tR-ZPU" id="c3M-wV-YDs">
@@ -53,29 +53,18 @@
                                             <constraint firstItem="ByY-wI-I75" firstAttribute="centerY" secondItem="Gg2-tR-ZPU" secondAttribute="centerY" id="yZI-c5-byV"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="detailImage" destination="d2r-bu-dfK" id="mOO-10-5pf"/>
+                                            <outlet property="detailImage" destination="d2r-bu-dfK" id="S3a-y1-PC0"/>
                                             <outlet property="detailNote" destination="ByY-wI-I75" id="adf-e4-wkT"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMm-fm-cXm">
-                                <rect key="frame" x="15" y="147" width="348" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="fMm-fm-cXm" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="SyU-pt-q2d"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="fMm-fm-cXm" secondAttribute="trailing" constant="30" id="ejc-Sh-e7v"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="detailTableView" destination="obO-hr-6M9" id="c9y-5o-ySM"/>
-                        <outlet property="detailTitle" destination="fMm-fm-cXm" id="RqU-rQ-neu"/>
+                        <outlet property="detailTableView" destination="obO-hr-6M9" id="evW-e4-y3G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

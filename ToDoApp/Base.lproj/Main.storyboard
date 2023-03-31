@@ -60,7 +60,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="ToDo" id="b9p-EA-QnN"/>
                     <connections>
-                        <segue destination="dhG-Ld-qsR" kind="show" id="3Sa-pT-nXo"/>
+                        <segue destination="dhG-Ld-qsR" kind="show" identifier="detailsegue" id="3Sa-pT-nXo"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PC1-fo-g9d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
