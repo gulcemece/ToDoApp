@@ -7,12 +7,13 @@
 
 import UIKit
 
-class DetailTableViewCell: UITableViewCell {
+class DetailTableViewCell: UITableViewCell, UITextFieldDelegate {
 
 //    @IBOutlet weak var detailImage: UIImageView!
-    
-    @IBOutlet weak var detailNote: UILabel!
-    
+        
     @IBOutlet weak var detailImage: UIImageView!
+        
+    @IBOutlet var detailLabel: UILabel!
+    
 }
 

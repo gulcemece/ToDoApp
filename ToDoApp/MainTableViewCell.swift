@@ -9,9 +9,9 @@ import UIKit
 
 class MainTableViewCell: UITableViewCell {
     
+
+    @IBOutlet weak var doneButton: UIButton!
     
-    @IBOutlet weak var mainImage: UIImageView!
-    
-    @IBOutlet weak var mainTitle: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     
 }
