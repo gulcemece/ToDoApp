@@ -10,7 +10,8 @@ import UIKit
 class DetailPageViewController: UIViewController {
     // MARK: - Variables
     var itemIndex : Int?
-    var currentNotes: [String] = []
+    var noteIndex : Int?
+    var currentNotes: [Note] = []
     
     @IBOutlet weak var detailTableView: UITableView!
     
@@ -20,8 +21,7 @@ class DetailPageViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let index = itemIndex, let notes = ToDoManager.mainData[index].notes {
+        if let index = itemIndex, let notes = ToDoManager.mainData[index].noteList {
             self.currentNotes = notes
             self.titleTextField.text = ToDoManager.mainData[index].title
         }
@@ -40,13 +40,12 @@ class DetailPageViewController: UIViewController {
         if let index = itemIndex {
             var item = ToDoManager.mainData[index]
             item.title = titleTextField.text!
-            item.notes = currentNotes
+            item.noteList = currentNotes
             ToDoManager.mainData[index] = item
         } else {
-            let item = ToDo(title: titleTextField.text!, notes: currentNotes)
+            let item = ToDo(title: titleTextField.text!, noteList: currentNotes)
             ToDoManager.mainData.append(item)
         }
-        
         
         
         self.navigationController?.popToRootViewController(animated: true)
@@ -60,7 +59,7 @@ class DetailPageViewController: UIViewController {
         let addAction = UIAlertAction(title: "Add", style: .default) {_ in
             let text = alertController.textFields?.first?.text
             if text != "" {
-                self.currentNotes.append(text!)
+                self.currentNotes.append(Note(noteText: text!))
 //UI processes run in the main thread. UI updates require the bottom line.
                 DispatchQueue.main.async {
                     self.detailTableView.reloadData()
@@ -105,20 +104,26 @@ class DetailPageViewController: UIViewController {
         let editAction = UIAlertAction(title: "OK", style: .default) { [self]_ in
             let text = alertController.textFields?.first?.text
             if text != "" {
-                currentNotes[indexPath.row] = text!
-                detailTableView.reloadData()
+                currentNotes[indexPath.row].noteText = text!
+                DispatchQueue.main.async {
+                    self.detailTableView.reloadData()
+                }
             }
         }
         
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
         
-        alertController.addTextField()
+        alertController.addTextField(configurationHandler: { [self] textField in
+            textField.text = currentNotes[indexPath.row].noteText
+        })
         alertController.addAction(editAction)
         alertController.addAction(cancelButton)
         present(alertController, animated: true)
         
+        
     }
 }
+
 
 // MARK: - Table View Delegate and Data Source
 extension DetailPageViewController: UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
@@ -129,10 +134,20 @@ extension DetailPageViewController: UITableViewDelegate, UITableViewDataSource, 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let detailCell = tableView.dequeueReusableCell(withIdentifier: "detailcell", for: indexPath) as! DetailTableViewCell
+        let listItemText = currentNotes[indexPath.item].noteText
+        detailCell.detailLabel.text = listItemText
         let listItem = currentNotes[indexPath.item]
-        detailCell.detailLabel.text = listItem
+        let symbolName = listItem.isComplete ? "circle.fill" : "circle"
+        let image = UIImage(systemName: symbolName, withConfiguration: .none)
+        detailCell.doneButton.image = image
         return detailCell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentNotes[indexPath.item].isComplete.toggle()
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

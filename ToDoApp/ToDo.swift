@@ -6,7 +6,12 @@ import Foundation
 
 struct ToDo {
     var title: String
-    var notes: [String]? = nil
+    var noteList: [Note]? = nil
+    
+}
+
+struct Note {
+    var noteText: String
     var isComplete: Bool = false
 }
 

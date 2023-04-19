@@ -33,24 +33,6 @@ class MainPageTableViewController: UITableViewController {
 
         let listItem = ToDoManager.mainData[indexPath.item]
         cell.titleLabel.text = listItem.title
-        
-//        func doneButtonConfiguration(for reminder: Reminder) -> UICellAccessory.CustomViewConfiguration {
-//            let symbolName = reminder.isComplete ? "circle.fill" : "circle"
-//            let symbolConfiguration = UIImage.SymbolConfiguration(textStyle: .title1)
-//            let image = UIImage(systemName: symbolName, withConfiguration: symbolConfiguration)
-//            let button = ReminderDoneButton()
-//            button.id = reminder.id
-//            button.addTarget(self, action: #selector(didPressDoneButton(_:)), for: .touchUpInside)
-//            button.setImage(image, for: .normal)
-//
-//            return UICellAccessory.CustomViewConfiguration(customView: button, placement: .leading(displayed: .always))
-//        }
-        
-        func doneButtonConfiguration() {
-            let symbolName = listItem.isComplete ? "circle.fill" : "circle"
-            let image = UIImage(systemName: symbolName)
-            cell.doneButton.setImage(image, for: .normal)
-        }
 
         return cell
     }

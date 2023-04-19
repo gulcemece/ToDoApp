@@ -9,8 +9,6 @@ import UIKit
 
 class MainTableViewCell: UITableViewCell {
     
-
-    @IBOutlet weak var doneButton: UIButton!
     
     @IBOutlet weak var titleLabel: UILabel!
     

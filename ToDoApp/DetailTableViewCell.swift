@@ -8,12 +8,10 @@
 import UIKit
 
 class DetailTableViewCell: UITableViewCell, UITextFieldDelegate {
-
-//    @IBOutlet weak var detailImage: UIImageView!
-        
-    @IBOutlet weak var detailImage: UIImageView!
-        
+                
     @IBOutlet var detailLabel: UILabel!
     
+    @IBOutlet weak var doneButton: UIImageView!
+
 }
 
